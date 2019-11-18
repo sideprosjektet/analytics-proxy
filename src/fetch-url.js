@@ -4,6 +4,11 @@ const https = require('https');
 const crypto = require('crypto');
 
 let cached = {};
+/**
+ *
+ * @param url
+ * @returns {Promise<String>}
+ */
 module.exports = function(url) {
   const filename = crypto.createHash('md5').update(url).digest('hex');
   const cachedPath = path.resolve(__dirname, '..', 'cache', filename);

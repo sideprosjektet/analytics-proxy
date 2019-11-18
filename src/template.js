@@ -3,18 +3,18 @@ module.exports = function(content) {
 <script>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+m=s.getElementsByTagName(o)[0];a.async=1;a.defer=true;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-XXXXX-Y', 'auto');
+ga('set', 'forceSSL', false);
+ga('create', 'UA-2631702-1', 'auto');
 ga('require', 'linkid');
 ga('require', 'ec');
 setTimeout(function(){ 
     ga('send', 'pageview');
- }, 5000);
+ }, 0);
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="github-markdown.css">
+<link rel="stylesheet" href="style.css">
 <style>
 .markdown-body {
     box-sizing: border-box;
