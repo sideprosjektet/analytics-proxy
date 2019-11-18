@@ -11,5 +11,4 @@ module.exports = async function(req, reply) {
   } catch (e) {
     reply.code(500).send(e);
   }
-
 };

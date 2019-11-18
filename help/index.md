@@ -2,7 +2,7 @@
 
 This proxy is designed to protect users. It let you proxy your traffic to google
 analytics before it hits their servers. It also adds some nice features that 
-actually will help you get more precise data. Se more about he usecase at
+actually will help you get more precise data. Se more about the usecase at
 the [repo on github].
 
 ## Add analytics.js to Your Site

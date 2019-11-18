@@ -1,15 +1,17 @@
-const parseGaCookie = require('../parse-ga-cookie');
+const fixParams = require('../fix-params');
+const sendToGa = require('../send-to-ga');
+const isBot = require('isbot');
+const TRANSPARENT_GIF_BUFFER = Buffer.from('R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=', 'base64');
 module.exports = async function(req, reply) {
-  const params = req.query;
-  params.aip = 1; // turn on AIP to avoid strange statistics
-  delete params.z; // remove cachebuster... really not needed in this environment.
-  if (req.cookies._ga) {
-    // this allows for cross site tracking assuming that ga-proxy is run on subdomain.
-    params.cid = parseGaCookie(req.cookies._ga);
+  const uaString = req.headers["user-agent"];
+  const params = await fixParams(req.query, req.cookies, uaString, req.ip);
+  if (process.env.CID_DIMENSION) {
+    const customDimension = 'cd' + process.env.CID_DIMENSION;
+    params[customDimension] = params.cid;
   }
-  if (req.cookies._gid) {
-    params._gid = parseGaCookie(req.cookies._gid);
+  if(!isBot(uaString)){
+    await sendToGa(params);
   }
-  reply.code(200).header('Content-Type', 'application/json; charset=utf-8').send(params);
+  reply.code(200).header('Content-Type', 'image/gif').send(TRANSPARENT_GIF_BUFFER);
 };
 
