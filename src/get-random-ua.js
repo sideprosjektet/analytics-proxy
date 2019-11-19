@@ -23,6 +23,5 @@ function getRandom(arr, n) {
  */
 module.exports = async function(number) {
   const strings = await fetchUrl(userAgentsLoc);
-
   return getRandom(strings.split(os.EOL),number);
 }

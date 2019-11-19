@@ -1,11 +1,11 @@
 const querystring = require('querystring');
 const https = require('https');
-module.exports = function(params) {
+module.exports = function(params, gaHostname) {
   console.info(params);
   const postData = querystring.stringify(params);
   // An object of options to indicate where to post to
   const postOptions = {
-    host: 'www.google-analytics.com',
+    host: gaHostname,
     path: '/collect',
     method: 'POST',
     headers: {

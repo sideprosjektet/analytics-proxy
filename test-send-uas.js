@@ -32,7 +32,7 @@ const doIt = async function() {
 
     if(ua.length>0){
       console.log(params);
-      sendToGa(params);
+      sendToGa(params, 'www.google-analytics.com');
     }
   });
 };

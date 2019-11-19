@@ -10,7 +10,7 @@ module.exports = async function(req, reply) {
     params[customDimension] = params.cid;
   }
   if(!isBot(uaString)){
-    await sendToGa(params);
+    await sendToGa(params, process.env.ANALYTICS_ENDPOINT || 'www.google-analytics.com');
   }
   reply.code(200).header('Content-Type', 'image/gif').send(TRANSPARENT_GIF_BUFFER);
 };
